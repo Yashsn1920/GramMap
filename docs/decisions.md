@@ -32,3 +32,11 @@ Dated entries for choices that change the PRD (PRD Section 12.2). Each one also 
 - **is_pilot is set in S1.1** from the district, so S1.2 only has to attach polygons.
 - **Village name variants** for search: cleaned name, name without spaces, and a phonetic key (`pipelines/normalize/names.py`) that maps romanization variants such as Doddaballapura / Dodballapur to one form. Kannada-script names are not in KGIS; they can come from OSM `name:kn` in S2.2.
 - **LGD wins for pilot membership** (`compare_lgd --apply`, after the official LGD list for district 526 was downloaded on 2026-10-14). LGD lists 1,171 villages against 1,139 from KGIS: 29 post-2011 villages (codes 910xxx and above, no Census 2011 code) and 3 older ones are missing from KGIS and were added without boundaries; 3 that KGIS places in Bengaluru South were moved to Nelamangala; 3 KGIS villages with codes LGD does not list for this district (same names, other codes) are kept with is_pilot = false. After this the pilot matches LGD exactly. Re-running `load_directory` undoes the moves, so always run `compare_lgd --apply` after it.
+
+## 2026-10-14 — S1.2 village boundaries
+
+- **Join by LGD code, not Census code.** Every KGIS polygon carries `LGD_VillageCode`, which is our primary key, so the PRD's "join by Census code" step is not needed for Karnataka. The Census code on each polygon is checked instead: it agrees for 1,137 of the 1,139 joined villages.
+- **Join rate 97.3%** (1,139 of 1,171). The 32 without a polygon are LGD-only villages (29 created after 2011, plus 3 older ones KGIS lacks). They get approximate boundaries from building clusters in a later step (PRD 7.1, `boundary_precision = approximate`).
+- **Geometry handling uses Shapely 2 in `pipelines/`** (make_valid, keep polygonal parts, union multi-part villages), so it is testable without a database. 75 multi-part villages were merged and 1 invalid polygon was repaired.
+- **The 3 villages LGD moves into Nelamangala keep their KGIS polygons**, which lie in Bengaluru South. They show as 3 polygons outside the district outline. That is a disagreement between the two government sources, and we keep both facts.
+- **Map layers** are Martin vector tiles of `geo_village` and `geo_district`, requested from `/tiles/<table>/{z}/{x}/{y}` through the Vite proxy. `lgd_code` is promoted to the feature id for hover state.

@@ -41,14 +41,14 @@ def sh(*cmd):
         return ""
 
 
-report = os.path.join(ROOT, "docs/reports/S1_1_directory.md")
-lgd_report = os.path.join(ROOT, "docs/reports/S1_1_lgd_comparison.md")
-census_ok = False
+report = os.path.join(ROOT, "docs/reports/S1_2_boundaries.md")
+join_ok = False
 if os.path.exists(report):
     import re
 
-    m = re.search(r"With a Census 2011 code: \*\*[\d,]+\*\* \(([\d.]+)%\)", open(report).read())
-    census_ok = bool(m) and float(m.group(1)) >= 95
+    m = re.search(r"\*\*Join rate\*\* \| \*\*([\d.]+)%", open(report).read())
+    join_ok = bool(m) and float(m.group(1)) >= 90
+tiles = sh("curl", "-sf", "localhost:3000/catalog")
 pr = sh(
     "gh",
     "pr",
@@ -60,27 +60,19 @@ pr = sh(
 )
 
 tasks = [
-    ("KGIS ArcGIS client (paging, retries, cache)", exists("pipelines/connectors/arcgis.py")),
-    ("Directory builder: state, district, taluk, village", exists("pipelines/connectors/kgis.py")),
-    ("Name normalization + transliteration variants", exists("pipelines/normalize/names.py")),
-    ("LGD download parser + comparison", exists("pipelines/connectors/lgd.py")),
-    ("Loader command run (Karnataka)", os.path.exists(report)),
-    ("Pilot villages with Census code >= 95%", census_ok),
+    ("Fetch KGIS village polygons by LGD code", exists("pipelines/connectors/boundaries.py")),
     (
-        "LGD file downloaded (manual, captcha)",
-        (
-            any(
-                f.endswith((".csv", ".xlsx"))
-                for f in os.listdir(os.path.join(ROOT, "data/raw/lgd"))
-            )
-            if os.path.isdir(os.path.join(ROOT, "data/raw/lgd"))
-            else False
-        ),
+        "Repair (make_valid) and merge multi-part villages",
+        exists("pipelines/tests/test_boundaries.py"),
     ),
     (
-        "Pilot village count matches LGD",
-        os.path.exists(lgd_report) and "**Match**" in open(lgd_report).read(),
+        "District boundary loaded; pilot marked",
+        exists("backend/apps/geo/management/commands/load_boundaries.py"),
     ),
+    ("Join-rate report written", os.path.exists(report)),
+    ("Join rate >= 90%", join_ok),
+    ("Village tiles served by Martin", "geo_village" in tiles),
+    ("Boundaries drawn on the map (screenshot checked)", exists("docs/reports/S1_2_map.png")),
     ("PR open with CI green", "SUCCESS,SUCCESS" in pr or "MERGED" in pr),
 ]
 
@@ -88,10 +80,11 @@ for done_step in [
     "S0.1 Source audit and pilot district selection",
     "S0.2 Repository, Docker and CI setup",
     "S0.3 Database schema and configuration files",
+    "S1.1 LGD directory ingestion",
 ]:
     print(f"{done_step:<48} [done]")
 print()
-print("S1.1 LGD directory ingestion")
+print("S1.2 Village boundaries")
 print("  Overall   " + bar(sum(d for _, d in tasks), len(tasks)))
 print()
 for name, done in tasks:

@@ -86,6 +86,11 @@ docker compose exec backend python manage.py load_directory --pilot-district 526
     --report /app/docs/reports/S1_1_directory.md
 docker compose exec backend python manage.py compare_lgd /app/data/raw/lgd/villages_526.xlsx \
     --district 526 --apply --report /app/docs/reports/S1_1_lgd_comparison.md
+
+# S1.2 boundaries for the pilot villages (restart tiles so Martin sees new tables)
+docker compose exec backend python manage.py load_boundaries --district 526 \
+    --report /app/docs/reports/S1_2_boundaries.md
+docker compose restart tiles
 ```
 
 The LGD file is a one-time manual download (captcha) from lgdirectory.gov.in: Download Directory,
