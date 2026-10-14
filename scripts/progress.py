@@ -69,7 +69,10 @@ tasks = [
     (
         "LGD file downloaded (manual, captcha)",
         (
-            any(f.endswith((".csv", ".xlsx")) for f in os.listdir(os.path.join(ROOT, "data/raw/lgd")))
+            any(
+                f.endswith((".csv", ".xlsx"))
+                for f in os.listdir(os.path.join(ROOT, "data/raw/lgd"))
+            )
             if os.path.isdir(os.path.join(ROOT, "data/raw/lgd"))
             else False
         ),
