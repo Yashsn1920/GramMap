@@ -1,0 +1,31 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid #ddd;
+}
+.health {
+  font-size: 0.85rem;
+}
+.health.ok {
+  color: #1a7f37;
+}
+.health.bad {
+  color: #b42318;
+}
+.map {
+  flex: 1;
+}

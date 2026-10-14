@@ -43,7 +43,7 @@ def sh(*cmd):
 
 IMAGES = [
     "pgrouting/pgrouting:16-3.5-3.8",
-    "ghcr.io/maplibre/martin:v1.16.1",
+    "ghcr.io/maplibre/martin:1.16.1",
     "redis:7-alpine",
     "python:3.12-slim-bookworm",
     "node:22-alpine",
