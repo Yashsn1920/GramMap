@@ -1,0 +1,82 @@
+## kgismaps2/Boundaries/Village_Dynamic | caps: Map,Query,Data | maxRecords: 1000
+   [0] Village: 123
+## kgismaps/Education/Education_New | caps: Map,Query,Data | maxRecords: 100000
+   [1] School: 181
+   [2] Mass Education Office: 0
+   [3] PUC: 10
+   [4] Public Library: 0
+   [5] Printing_Press: 0
+   [7] University: 0
+   [8] Engineering Colleges: 1
+   [9] State Government Degree College: 2
+   [10] Degree College: 3
+   [11] Teacher Education Institution: 0
+   [12] PolytechnicInstitute: 0
+   [13] JuniorTechnicalSchool: 0
+   [14] School Block Boundary: 2
+   [15] School District Boundary: 1
+   [16] Printing Press Shed: 0
+## kgismaps/Health/Health | caps: Map,Query,Data | maxRecords: 1000
+## kgismaps2/GP_Utility/GP_Utility | caps: Map,Query,Data | maxRecords: 1000
+   [0] GP Building: 11
+   [1] Street Light: 37
+   [2] Water Suply: 116
+## kgismaps2/RDPR_WS/RDPR_WS | caps: Map,Query,Data | maxRecords: 1000
+   [1] Gram Panchayat Level Federation: 0
+   [2] Self Help Group: 0
+   [3] Ward Level Federation: 0
+   [4] RWS Divisional Office: 0
+   [5] Biofuel Information Demonstration Centre: 0
+   [6] RWS_BW_FC: 0
+## kgismaps2/GovtBuildings/GovtBuildings | caps: Map,Query,Data | maxRecords: 1000
+   [0] GovtBuildings: 3
+   [1] PMGatiSakthiCell: 0
+## kgismaps2/Village_Ward_Census/Village_Ward_Census | caps: Map,Query,Data | maxRecords: 1000
+## kgismaps2/Water_Utility/Water_Utility | caps: Map,Query,Data | maxRecords: 1000
+   [1] Valve: 0
+   [2] Sewage Treatment Plant: 0
+   [3] Pump Station: 0
+   [4] Over Head Tank: 0
+   [5] GLSR: 0
+   [6] Borewell: 0
+   [7] Manhole: 0
+   [8] ISPS: 0
+   [9] Consumer: 0
+   [10] Kiosks Center: 0
+   [11] Bulk_Meter: 0
+   [12] JUNCTION_NODE: 0
+   [13] Water_Meter: 0
+   [15] Water line: 0
+   [16] Sewer Line: 0
+   [18] Division Boundary: 0
+   [19] SubDivision Boundary: 0
+   [20] Service Station Boundary: 0
+   [21] Zone_Boundary: 0
+   [22] VALLEY_DIVISION: 0
+   [23] VALLEY_SUBDIVISION: 0
+   [24] Village Boundary 110: 0
+   [25] Village Division Boundary 110: 0
+   [26] Village Sub  Division Boundary 110: 0
+   [27] WETWELL: 0
+   [28] SEWERVALVE: 0
+   [29] TREATEDVALVES: 0
+   [30] TREATEDJUNCTION: 0
+   [31] TREATEDFLOWMETER: 0
+   [32] SEWERFLOWMETER: 0
+   [33] TREATEDWATERLINE: 0
+   [34] Consumer_line: 0
+## kgismaps2/PWD/PWD | caps: Map,Query,Data | maxRecords: 1000
+   [0] Port & Inland Water Transport: 0
+   [1] Bridge: 4
+   [2] Quaters: 0
+   [3] Division Boundary: 1
+   [4] Circle Boundary: 1
+   [5] Zone Boundary: 1
+## kgismaps2/GramaOne/GramaOne | caps: Map,Query,Data | maxRecords: 1000
+   [0] GramaOne: 12
+   [1] CSC: 96
+## kgismaps2/Health/Immunisation_Centers | caps: Map,Query,Data | maxRecords: 1000
+   [0] Polio Immunization Location: 66
+   [1] Routine Immunization Location: 0
+## kgismaps2/Boundaries/GP_Boundary | caps: Map,Query,Data | maxRecords: 1000
+   [0] Gram Panchayath Boundary: 27

@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+data/raw/
+data/cache/
+.env
+node_modules/
+frontend/dist/
+.pytest_cache/
+.ruff_cache/
+*.tsbuildinfo

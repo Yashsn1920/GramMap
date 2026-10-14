@@ -1,0 +1,52 @@
+{
+ "Bengaluru North": {
+  "villages": 1379,
+  "gram_panchayats": 264,
+  "schools": 1529,
+  "puc_colleges": 71,
+  "gp_water_supply": 1827,
+  "gp_buildings": 130,
+  "polio_sites": 462,
+  "govt_buildings": 47
+ },
+ "Bengaluru South": {
+  "villages": 1012,
+  "gram_panchayats": 256,
+  "schools": 1737,
+  "puc_colleges": 88,
+  "gp_water_supply": 2814,
+  "gp_buildings": 87,
+  "polio_sites": 592,
+  "govt_buildings": 64
+ },
+ "Bengaluru Urban": {
+  "villages": 1174,
+  "gram_panchayats": 165,
+  "schools": 6153,
+  "puc_colleges": 705,
+  "gp_water_supply": 2293,
+  "gp_buildings": 152,
+  "polio_sites": 3857,
+  "govt_buildings": 141
+ },
+ "Chikkaballapura": {
+  "villages": 1757,
+  "gram_panchayats": 278,
+  "schools": 2055,
+  "puc_colleges": 111,
+  "gp_water_supply": 4270,
+  "gp_buildings": 113,
+  "polio_sites": 357,
+  "govt_buildings": 145
+ },
+ "Kolar": {
+  "villages": 2038,
+  "gram_panchayats": 265,
+  "schools": 2494,
+  "puc_colleges": 122,
+  "gp_water_supply": 2533,
+  "gp_buildings": 128,
+  "polio_sites": 753,
+  "govt_buildings": 65
+ }
+}

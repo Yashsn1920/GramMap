@@ -1,0 +1,23 @@
+{
+ "Bengaluru North": {
+  "school": 77,
+  "college": 27,
+  "health": 65,
+  "anganwadi": 2,
+  "water_tower": 88,
+  "well_pump": 84,
+  "drinking_water": 5,
+  "pond": 9286,
+  "gov_office": 8,
+  "post_office": 3,
+  "bank": 30,
+  "village_place": 784
+ },
+ "Kolar": {
+  "school": 26,
+  "college": 20,
+  "health": 101,
+  "anganwadi": 0,
+  "water_tower": 6
+ }
+}

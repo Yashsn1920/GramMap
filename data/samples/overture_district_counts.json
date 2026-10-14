@@ -1,0 +1,37 @@
+{
+ "Bengaluru North": {
+  "bank": 266,
+  "college": 78,
+  "gov_office": 71,
+  "health": 103,
+  "school": 113
+ },
+ "Bengaluru South": {
+  "bank": 205,
+  "college": 66,
+  "gov_office": 45,
+  "health": 71,
+  "school": 45
+ },
+ "Bengaluru Urban": {
+  "bank": 6509,
+  "college": 1996,
+  "gov_office": 1665,
+  "health": 7201,
+  "school": 3086
+ },
+ "Chikkaballapura": {
+  "bank": 165,
+  "college": 46,
+  "gov_office": 32,
+  "health": 48,
+  "school": 44
+ },
+ "Kolar": {
+  "bank": 189,
+  "college": 72,
+  "gov_office": 54,
+  "health": 106,
+  "school": 54
+ }
+}
