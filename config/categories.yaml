@@ -1,0 +1,113 @@
+# Asset category taxonomy (PRD Section 7.2).
+# match: how conflation decides two records may be the same asset (Section 7.5).
+#   distance: within `meters`; overlap: polygons intersect; buffer: line within `meters` of the other.
+# sources: tag/category selectors per source id (see sources.yaml). Refined in the S2.x connector steps.
+
+categories:
+  SCH:
+    label: School
+    geometry: point
+    match: {method: distance, meters: 150}
+    subtypes: [primary, upper_primary, secondary, higher_secondary]
+    sources:
+      osm: ["amenity=school"]
+      overture: ["school", "elementary_school", "high_school", "education"]
+      kgis_schools: ["*"]
+      pmgsy_facilities: ["FAC_CATEGO=Education"]
+  COL:
+    label: College
+    geometry: point
+    match: {method: distance, meters: 200}
+    sources:
+      osm: ["amenity=college", "amenity=university"]
+      overture: ["college_university"]
+  HLT:
+    label: Health facility
+    geometry: point
+    match: {method: distance, meters: 150}
+    subtypes: [SC, PHC, CHC, hospital, clinic]
+    sources:
+      osm: ["amenity=hospital", "amenity=clinic", "amenity=doctors", "healthcare=*"]
+      overture: ["hospital", "health_and_medical", "doctor"]
+      pmgsy_facilities: ["FAC_CATEGO=Medical"]
+      kgis_immunisation: ["*"]
+  AWC:
+    label: Anganwadi centre
+    geometry: point
+    match: {method: distance, meters: 100}
+    sources:
+      osm: ["name~anganwadi"]
+  WTR:
+    label: Water tank / tower
+    geometry: point
+    match: {method: distance, meters: 50}
+    sources:
+      osm: ["man_made=water_tower", "man_made=storage_tank+content=water"]
+      kgis_gp_water: ["*"]
+  WEL:
+    label: Well / hand pump / tap
+    geometry: point
+    match: {method: distance, meters: 30}
+    sources:
+      osm: ["man_made=water_well", "amenity=drinking_water"]
+  PND:
+    label: Pond / tank (water body)
+    geometry: polygon
+    match: {method: overlap}
+    sources:
+      osm: ["natural=water+water=pond", "natural=water+water=reservoir"]
+      jrc: ["occurrence>25"]
+  ROD:
+    label: Road
+    geometry: line
+    match: {method: buffer, meters: 15}
+    sources:
+      osm: ["highway=*"]
+      pmgsy_roads: ["*"]
+      ms_roads: ["*"]
+  GOV:
+    label: Panchayat / government office
+    geometry: point
+    match: {method: distance, meters: 150}
+    sources:
+      osm: ["office=government", "amenity=townhall"]
+      kgis_gp_buildings: ["*"]
+      kgis_govt_buildings: ["*"]
+      pmgsy_facilities: ["FAC_CATEGO=Transport/Admin"]
+  PST:
+    label: Post office
+    geometry: point
+    match: {method: distance, meters: 150}
+    sources:
+      osm: ["amenity=post_office"]
+      overture: ["post_office"]
+  BNK:
+    label: Bank / ATM
+    geometry: point
+    match: {method: distance, meters: 100}
+    subtypes: [bank, atm]
+    sources:
+      osm: ["amenity=bank", "amenity=atm"]
+      overture: ["bank_credit_union", "atms"]
+  MKT:
+    label: Market
+    geometry: point
+    match: {method: distance, meters: 200}
+    sources:
+      osm: ["amenity=marketplace"]
+      pmgsy_facilities: ["FAC_CATEGO=Agro"]
+  REL:
+    label: Place of worship
+    geometry: point
+    match: {method: distance, meters: 75}
+    sources:
+      osm: ["amenity=place_of_worship"]
+      overture: ["religious_organization"]
+  OTH:
+    label: Other community asset
+    geometry: point
+    match: {method: distance, meters: 100}
+    subtypes: [community_hall, library, police, csc]
+    sources:
+      osm: ["amenity=community_centre", "amenity=library", "amenity=police"]
+      kgis_gramaone: ["*"]

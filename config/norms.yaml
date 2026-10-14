@@ -1,0 +1,61 @@
+# Service norms and gap-score weights (PRD Section 7.11).
+# Starting values only: check against current RTE and IPHS documents in S7.3 and cite them.
+# rule types:
+#   access:     every settlement within max_km by road of the category (optionally a subtype)
+#   population: one facility per `per` people (plains / hilly), optionally also within max_km
+#   presence:   at least one facility per settlement or per village
+#   paved_road: village connected by a paved road
+
+norms:
+  - id: primary_school
+    label: Primary school access
+    category: SCH
+    subtype: primary
+    rule: {type: access, max_km: 1}
+    weight: 15
+  - id: upper_primary_school
+    label: Upper primary access
+    category: SCH
+    subtype: upper_primary
+    rule: {type: access, max_km: 3}
+    weight: 10
+  - id: secondary_school
+    label: Secondary school access
+    category: SCH
+    subtype: secondary
+    rule: {type: access, max_km: 5}
+    weight: 10
+  - id: sub_centre
+    label: Sub-centre
+    category: HLT
+    subtype: SC
+    rule: {type: population, per: {plains: 5000, hilly: 3000}}
+    weight: 10
+  - id: phc
+    label: PHC
+    category: HLT
+    subtype: PHC
+    rule: {type: population, per: {plains: 30000, hilly: 20000}, max_km: 10}
+    weight: 15
+  - id: chc
+    label: CHC
+    category: HLT
+    subtype: CHC
+    rule: {type: population, per: {plains: 120000, hilly: 80000}}
+    weight: 5
+  - id: drinking_water
+    label: Drinking water
+    category: WEL
+    also_categories: [WTR]
+    rule: {type: presence, per: settlement}
+    weight: 15
+  - id: all_weather_road
+    label: All-weather road
+    category: ROD
+    rule: {type: paved_road}
+    weight: 10
+  - id: anganwadi
+    label: Anganwadi
+    category: AWC
+    rule: {type: presence, per: village}
+    weight: 10

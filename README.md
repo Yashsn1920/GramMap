@@ -2,7 +2,7 @@
 
 Village asset mapping for Indian villages, built only from public online data
 (OpenStreetMap, Overture, LGD, Census, UDISE+, KGIS, PMGSY and others).
-The full specification is in [`docs/GramMap_PRD_v1.1.docx`](docs/GramMap_PRD_v1.1.docx).
+The full specification is in [`docs/GramMap_PRD_v1.2.docx`](docs/GramMap_PRD_v1.2.docx).
 
 ## Quick start
 
@@ -77,6 +77,20 @@ docs/        PRD, source audit, decisions log
 data/        downloads and cache (git-ignored)
 notebooks/   exploration only
 ```
+
+## Configuration
+
+All thresholds, weights, mappings and norms are in `config/*.yaml`. They are loaded and validated by
+`pipelines/config.py`:
+
+```python
+from pipelines.config import load_config
+cfg = load_config()                  # raises ConfigError naming the file and field on any problem
+cfg.categories["SCH"].match.meters   # 150
+cfg.hash                             # stored on every pipeline run
+```
+
+Set `GRAMMAP_CONFIG_DIR` to load a different directory.
 
 ## Conventions
 

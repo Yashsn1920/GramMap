@@ -1,0 +1,17 @@
+# Travel speeds in km/h for the road network (PRD Section 7.10).
+
+walk:
+  default: 4.5
+
+drive:
+  default: 25
+  highway:
+    motorway: 60
+    trunk: 50
+    primary: 50
+    secondary: 40
+    tertiary: 30
+    residential: 25
+    unclassified: 25
+    service: 15
+    track: 15

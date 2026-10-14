@@ -91,6 +91,8 @@ function STEP(s) {
 // Progress tracker state: update when a step is finished.
 const PROGRESS = {
   "S0.1": ["Done", "14 Oct 2026. Pilot: Bengaluru North. See docs/source_audit.md"],
+  "S0.2": ["Done", "14 Oct 2026. PR #1; CI green"],
+  "S0.3": ["Done", "14 Oct 2026. PR #2; 18 tests"],
 };
 
 // ---------- content ----------
@@ -105,7 +107,7 @@ C.push(
   P("A GIS-enabled application that documents community assets (schools, health facilities, water sources, roads and other public infrastructure) for real villages and towns, using only publicly available online data. No field surveys and no LLM services are required."),
   SP(),
   T(["Item", "Value"], [
-    ["Document version", "1.1"],
+    ["Document version", "1.2"],
     ["Date", "14 October 2026"],
     ["Status", "Baseline. Changes are tracked in the Change Log (Section 19)."],
     ["Project type", "College project, software only"],
@@ -558,7 +560,7 @@ C.push(
 state(code PK, name)
 district(code PK, state_code FK, name, boundary MULTIPOLYGON)
 block(code PK, district_code FK, name)
-village(lgd_code PK, census_code, block_code FK, name, norm_name,
+village(lgd_code PK, census_code, gp_lgd_code, block_code FK, name, norm_name,
         name_variants TEXT[], boundary MULTIPOLYGON, boundary_precision,
         population_census, population_est, completeness_score, gap_score,
         is_pilot BOOL, last_processed_at)
@@ -591,7 +593,7 @@ settlement_access(settlement_id FK, category, mode, distance_m, time_min,
 expected_amenity(village_lgd FK, category, source, expected_count, source_year)
 gap_flag(id PK, village_lgd FK, kind, category, geom GEOMETRY NULL,
          evidence JSONB, status[open|resolved|dismissed], created_at)
-water_body(id PK, geom POLYGON, permanence NUMERIC, trend_slope NUMERIC, label)
+water_body(id PK, geom MULTIPOLYGON, permanence NUMERIC, trend_slope NUMERIC, label)
 
 -- Users and feedback
 user(id PK, email, role[admin|reviewer|viewer])
@@ -678,6 +680,7 @@ C.push(
     abbreviations.yaml        # name normalization dictionary
     norms.yaml                # service norms and weights
     speeds.yaml               # road speeds per class and mode
+    pipeline.yaml             # numeric thresholds for resolver, conflation, confidence, ...
   pipelines/                  # pure Python package, no Django imports
     connectors/  base.py  osm.py  overture.py  lgd.py  boundaries.py  census.py
                  udise.py  health.py  pmgsy.py  buildings.py  population.py ...
@@ -1167,6 +1170,7 @@ C.push(
   T(["Version", "Date", "Change", "By"], [
     ["1.0", "14 Oct 2026", "Initial baseline", "Team"],
     ["1.1", "14 Oct 2026", "S0.1 source audit: KGIS added as a Must source; PMGSY via DataMeet mirror; NHFR, Mission Antyodaya, Census site marked blocked; LGD optional; pilot district fixed as Bengaluru North; two risks updated", "Team"],
+    ["1.2", "14 Oct 2026", "S0.2 and S0.3 done. Data model: village.gp_lgd_code added (KGIS provides GP codes); water_body.geom is MULTIPOLYGON; bronze_record unique on (source, content_hash). Repository layout: config/pipeline.yaml added for the numeric thresholds of Section 7. See docs/decisions.md", "Team"],
     ["", "", "", ""],
   ], [1100, 1600, 4926, 1400]),
 );
