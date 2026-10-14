@@ -1,0 +1,589 @@
+{
+ "state": [
+  {
+   "OBJECTID": 1,
+   "KGISStateID": 1,
+   "KGISStateCode": "29",
+   "KGISStateName": "Karnataka"
+  }
+ ],
+ "district": [
+  {
+   "OBJECTID": 20,
+   "BhuCodeDistrict": "20",
+   "KGISDistrictName": "Bengaluru (Urban)",
+   "KGISDistrictCode": "20",
+   "LGD_DistrictCode": 525
+  },
+  {
+   "OBJECTID": 21,
+   "BhuCodeDistrict": "21",
+   "KGISDistrictName": "Bengaluru (Rural)",
+   "KGISDistrictCode": "21",
+   "LGD_DistrictCode": 526
+  }
+ ],
+ "taluk": [
+  {
+   "OBJECTID": 1240,
+   "KGISTalukCode": "2101",
+   "KGISTalukName": "Nelamangala",
+   "KGISDistrictCode": "21",
+   "LGD_TalukCode": 5601
+  },
+  {
+   "OBJECTID": 1241,
+   "KGISTalukCode": "2102",
+   "KGISTalukName": "Doddaballapura",
+   "KGISDistrictCode": "21",
+   "LGD_TalukCode": 5602
+  },
+  {
+   "OBJECTID": 1242,
+   "KGISTalukCode": "2103",
+   "KGISTalukName": "Devanahalli",
+   "KGISDistrictCode": "21",
+   "LGD_TalukCode": 5603
+  },
+  {
+   "OBJECTID": 1243,
+   "KGISTalukCode": "2104",
+   "KGISTalukName": "Hoskote",
+   "KGISDistrictCode": "21",
+   "LGD_TalukCode": 5604
+  }
+ ],
+ "hobli": [
+  {
+   "OBJECTID": 417,
+   "KGISHobliID": 498,
+   "KGISHobliCode": "210201",
+   "KGISHobliName": "Kasaba",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2102"
+  },
+  {
+   "OBJECTID": 418,
+   "KGISHobliID": 883,
+   "KGISHobliCode": "210202",
+   "KGISHobliName": "Sasalu",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2102"
+  },
+  {
+   "OBJECTID": 419,
+   "KGISHobliID": 699,
+   "KGISHobliCode": "210203",
+   "KGISHobliName": "Madure",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2102"
+  },
+  {
+   "OBJECTID": 420,
+   "KGISHobliID": 981,
+   "KGISHobliCode": "210205",
+   "KGISHobliName": "Tubagere",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2102"
+  },
+  {
+   "OBJECTID": 421,
+   "KGISHobliID": 1015,
+   "KGISHobliCode": "210301",
+   "KGISHobliName": "Vijayapura",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2103"
+  },
+  {
+   "OBJECTID": 422,
+   "KGISHobliID": 188,
+   "KGISHobliCode": "210303",
+   "KGISHobliName": "Channarayapattana",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2103"
+  },
+  {
+   "OBJECTID": 423,
+   "KGISHobliID": 662,
+   "KGISHobliCode": "210304",
+   "KGISHobliName": "Kundana",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2103"
+  },
+  {
+   "OBJECTID": 424,
+   "KGISHobliID": 516,
+   "KGISHobliCode": "210401",
+   "KGISHobliName": "Kasaba",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2104"
+  },
+  {
+   "OBJECTID": 425,
+   "KGISHobliID": 54,
+   "KGISHobliCode": "210402",
+   "KGISHobliName": "Anugondanahalli",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2104"
+  },
+  {
+   "OBJECTID": 426,
+   "KGISHobliID": 398,
+   "KGISHobliCode": "210403",
+   "KGISHobliName": "Jadigenahalli",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2104"
+  },
+  {
+   "OBJECTID": 427,
+   "KGISHobliID": 768,
+   "KGISHobliCode": "210405",
+   "KGISHobliName": "Nandagudi",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2104"
+  },
+  {
+   "OBJECTID": 573,
+   "KGISHobliID": 1245,
+   "KGISHobliCode": "210104",
+   "KGISHobliName": "Kasaba-2 ",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2101"
+  },
+  {
+   "OBJECTID": 574,
+   "KGISHobliID": 1244,
+   "KGISHobliCode": "210104",
+   "KGISHobliName": "Kasaba-2 ",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2101"
+  },
+  {
+   "OBJECTID": 918,
+   "KGISHobliID": 548,
+   "KGISHobliCode": "210101",
+   "KGISHobliName": "Kasaba",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2101"
+  },
+  {
+   "OBJECTID": 919,
+   "KGISHobliID": 935,
+   "KGISHobliCode": "210102",
+   "KGISHobliName": "Sompura",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2101"
+  },
+  {
+   "OBJECTID": 920,
+   "KGISHobliID": 936,
+   "KGISHobliCode": "210102",
+   "KGISHobliName": "Sompura",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2101"
+  },
+  {
+   "OBJECTID": 921,
+   "KGISHobliID": 1472,
+   "KGISHobliCode": "210103",
+   "KGISHobliName": "Tyamagundlu",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2101"
+  },
+  {
+   "OBJECTID": 922,
+   "KGISHobliID": 984,
+   "KGISHobliCode": "210103",
+   "KGISHobliName": "Tyamagundlu",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2101"
+  },
+  {
+   "OBJECTID": 923,
+   "KGISHobliID": 937,
+   "KGISHobliCode": "210105",
+   "KGISHobliName": "Sompura-2 ",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2101"
+  },
+  {
+   "OBJECTID": 924,
+   "KGISHobliID": 938,
+   "KGISHobliCode": "210105",
+   "KGISHobliName": "Sompura-2 ",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2101"
+  },
+  {
+   "OBJECTID": 925,
+   "KGISHobliID": 985,
+   "KGISHobliCode": "210106",
+   "KGISHobliName": "Tyamagundlu-2 ",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2101"
+  },
+  {
+   "OBJECTID": 926,
+   "KGISHobliID": 231,
+   "KGISHobliCode": "210204",
+   "KGISHobliName": "Doddabelavangala",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2102"
+  },
+  {
+   "OBJECTID": 927,
+   "KGISHobliID": 1178,
+   "KGISHobliCode": "210204",
+   "KGISHobliName": "Doddabelavangala",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2102"
+  },
+  {
+   "OBJECTID": 928,
+   "KGISHobliID": 496,
+   "KGISHobliCode": "210302",
+   "KGISHobliName": "Kasaba",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2103"
+  },
+  {
+   "OBJECTID": 929,
+   "KGISHobliID": 497,
+   "KGISHobliCode": "210302",
+   "KGISHobliName": "Kasaba",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2103"
+  },
+  {
+   "OBJECTID": 930,
+   "KGISHobliID": 942,
+   "KGISHobliCode": "210404",
+   "KGISHobliName": "Sulibele",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2104"
+  },
+  {
+   "OBJECTID": 931,
+   "KGISHobliID": 943,
+   "KGISHobliCode": "210404",
+   "KGISHobliName": "Sulibele",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2104"
+  },
+  {
+   "OBJECTID": 1121,
+   "KGISHobliID": 931,
+   "KGISHobliCode": "210107",
+   "KGISHobliName": "Soluru",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2101"
+  },
+  {
+   "OBJECTID": 1122,
+   "KGISHobliID": 932,
+   "KGISHobliCode": "210107",
+   "KGISHobliName": "Soluru",
+   "BhuCodeHobli": null,
+   "KGISTalukCode": "2101"
+  }
+ ],
+ "village": [
+  {
+   "OBJECTID": 13627,
+   "KGISVillageID": 19983,
+   "KGISVillageName": "Bettakote",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625439",
+   "LGDGPCode": "215426",
+   "LGD_VillageCode": 625440
+  },
+  {
+   "OBJECTID": 13628,
+   "KGISVillageID": 19984,
+   "KGISVillageName": "Bettakote",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625440",
+   "LGDGPCode": "215426",
+   "LGD_VillageCode": 625440
+  },
+  {
+   "OBJECTID": 13629,
+   "KGISVillageID": 19988,
+   "KGISVillageName": "Bhudagere Amanikere",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625460",
+   "LGDGPCode": "215429",
+   "LGD_VillageCode": 625460
+  },
+  {
+   "OBJECTID": 13630,
+   "KGISVillageID": 19989,
+   "KGISVillageName": "Bhudhigere",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625461",
+   "LGDGPCode": "215429",
+   "LGD_VillageCode": 625461
+  },
+  {
+   "OBJECTID": 13631,
+   "KGISVillageID": 19993,
+   "KGISVillageName": "Channahalli",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625437",
+   "LGDGPCode": "215431",
+   "LGD_VillageCode": 625437
+  },
+  {
+   "OBJECTID": 13632,
+   "KGISVillageID": 19994,
+   "KGISVillageName": "Channarayapatnadha Amanikere",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625416",
+   "LGDGPCode": "215430",
+   "LGD_VillageCode": 625416
+  },
+  {
+   "OBJECTID": 13633,
+   "KGISVillageID": 19998,
+   "KGISVillageName": "Doddakurubarahalli",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625426",
+   "LGDGPCode": "272722",
+   "LGD_VillageCode": 625426
+  },
+  {
+   "OBJECTID": 13634,
+   "KGISVillageID": 20003,
+   "KGISVillageName": "Handarahalli",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625462",
+   "LGDGPCode": "215429",
+   "LGD_VillageCode": 625462
+  },
+  {
+   "OBJECTID": 13635,
+   "KGISVillageID": 20006,
+   "KGISVillageName": "Hyedalu",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625413",
+   "LGDGPCode": "215430",
+   "LGD_VillageCode": 625413
+  },
+  {
+   "OBJECTID": 13636,
+   "KGISVillageID": 20008,
+   "KGISVillageName": "J.I. Agalakote",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625438",
+   "LGDGPCode": "215431",
+   "LGD_VillageCode": 625438
+  },
+  {
+   "OBJECTID": 13637,
+   "KGISVillageID": 20010,
+   "KGISVillageName": "J.I. Bidiganahalli",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625415",
+   "LGDGPCode": "215430",
+   "LGD_VillageCode": 625415
+  },
+  {
+   "OBJECTID": 13638,
+   "KGISVillageID": 20011,
+   "KGISVillageName": "J.I. Chikkaramanahalli",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625412",
+   "LGDGPCode": "215431",
+   "LGD_VillageCode": 625412
+  },
+  {
+   "OBJECTID": 13639,
+   "KGISVillageID": 20012,
+   "KGISVillageName": "J.I. Hiriganahalli",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625414",
+   "LGDGPCode": "215428",
+   "LGD_VillageCode": 625414
+  },
+  {
+   "OBJECTID": 13640,
+   "KGISVillageID": 20015,
+   "KGISVillageName": "J.I. Kommasandra",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625410",
+   "LGDGPCode": "215444",
+   "LGD_VillageCode": 625410
+  },
+  {
+   "OBJECTID": 13641,
+   "KGISVillageID": 20019,
+   "KGISVillageName": "J.I. Thellohalli Agrahara",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625421",
+   "LGDGPCode": "215431",
+   "LGD_VillageCode": 625421
+  },
+  {
+   "OBJECTID": 13642,
+   "KGISVillageID": 20021,
+   "KGISVillageName": "Kachipura",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625448",
+   "LGDGPCode": "215441",
+   "LGD_VillageCode": 625448
+  },
+  {
+   "OBJECTID": 13643,
+   "KGISVillageID": 20022,
+   "KGISVillageName": "Channarayapatna",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625417",
+   "LGDGPCode": "215430",
+   "LGD_VillageCode": 625417
+  },
+  {
+   "OBJECTID": 13644,
+   "KGISVillageID": 20024,
+   "KGISVillageName": "Kondenahalli",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625458",
+   "LGDGPCode": "215432",
+   "LGD_VillageCode": 625458
+  },
+  {
+   "OBJECTID": 13645,
+   "KGISVillageID": 20027,
+   "KGISVillageName": "Mallepura",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625447",
+   "LGDGPCode": "215441",
+   "LGD_VillageCode": 625446
+  },
+  {
+   "OBJECTID": 13646,
+   "KGISVillageID": 20028,
+   "KGISVillageName": "Mallepura",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625446",
+   "LGDGPCode": "215441",
+   "LGD_VillageCode": 625446
+  },
+  {
+   "OBJECTID": 13647,
+   "KGISVillageID": 20029,
+   "KGISVillageName": "Maradiane",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625431",
+   "LGDGPCode": "215430",
+   "LGD_VillageCode": 625427
+  },
+  {
+   "OBJECTID": 13648,
+   "KGISVillageID": 20031,
+   "KGISVillageName": "Nallappanahalli",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625445",
+   "LGDGPCode": "215441",
+   "LGD_VillageCode": 625445
+  },
+  {
+   "OBJECTID": 13649,
+   "KGISVillageID": 20035,
+   "KGISVillageName": "Nalluru Amanikere",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625443",
+   "LGDGPCode": "215441",
+   "LGD_VillageCode": 625443
+  },
+  {
+   "OBJECTID": 13650,
+   "KGISVillageID": 20041,
+   "KGISVillageName": "Thammenahalli",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625409",
+   "LGDGPCode": "215444",
+   "LGD_VillageCode": 625409
+  },
+  {
+   "OBJECTID": 13651,
+   "KGISVillageID": 20042,
+   "KGISVillageName": "Thotna Teravu",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625459",
+   "LGDGPCode": "215429",
+   "LGD_VillageCode": 625459
+  },
+  {
+   "OBJECTID": 13652,
+   "KGISVillageID": 20044,
+   "KGISVillageName": "Yeliyuru",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625411",
+   "LGDGPCode": "215444",
+   "LGD_VillageCode": 625411
+  },
+  {
+   "OBJECTID": 13653,
+   "KGISVillageID": 20049,
+   "KGISVillageName": "Anigatte",
+   "KGISHobliID": 497,
+   "CensusVillageCode": "2958305603625369",
+   "LGDGPCode": "215427",
+   "LGD_VillageCode": 625369
+  },
+  {
+   "OBJECTID": 13654,
+   "KGISVillageID": 20050,
+   "KGISVillageName": "Anneshwara",
+   "KGISHobliID": 497,
+   "CensusVillageCode": "2958305603625407",
+   "LGDGPCode": "215424",
+   "LGD_VillageCode": 625407
+  },
+  {
+   "OBJECTID": 13655,
+   "KGISVillageID": 20051,
+   "KGISVillageName": "Atthibele",
+   "KGISHobliID": 497,
+   "CensusVillageCode": "2958305603625372",
+   "LGDGPCode": "215425",
+   "LGD_VillageCode": 625372
+  },
+  {
+   "OBJECTID": 13656,
+   "KGISVillageID": 20053,
+   "KGISVillageName": "Bandaramanahalli",
+   "KGISHobliID": 497,
+   "CensusVillageCode": "2958305603625392",
+   "LGDGPCode": "215424",
+   "LGD_VillageCode": 625392
+  },
+  {
+   "OBJECTID": 13627,
+   "KGISVillageID": 999999,
+   "KGISVillageName": "Bettakote",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625439",
+   "LGDGPCode": "215426",
+   "LGD_VillageCode": 625440
+  },
+  {
+   "OBJECTID": 13628,
+   "KGISVillageID": 999998,
+   "KGISVillageName": "Bettakote",
+   "KGISHobliID": 188,
+   "CensusVillageCode": "2958305603625440",
+   "LGDGPCode": "215426",
+   "LGD_VillageCode": null
+  },
+  {
+   "OBJECTID": 13629,
+   "KGISVillageID": 999997,
+   "KGISVillageName": "Bhudagere Amanikere",
+   "KGISHobliID": -5,
+   "CensusVillageCode": "2958305603625460",
+   "LGDGPCode": "215429",
+   "LGD_VillageCode": 1
+  }
+ ]
+}
