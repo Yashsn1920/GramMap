@@ -5,11 +5,15 @@ x-django: &django
   build:
     context: .
     dockerfile: backend/Dockerfile
+  # run as the host user so files created in bind mounts (e.g. migrations) stay editable
+  user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
   env_file:
     - path: .env
       required: false
   environment:
     POSTGRES_HOST: db
+    HOME: /tmp
+    PYTEST_ADDOPTS: -p no:cacheprovider
     REDIS_URL: redis://redis:6379/0
   volumes:
     - ./backend:/app/backend

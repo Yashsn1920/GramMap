@@ -1,0 +1,68 @@
+# Name normalization dictionaries (PRD Section 7.3). Keys are matched as whole tokens after
+# lower-casing and punctuation removal; multi-word expansions are allowed.
+
+abbreviations:
+  govt: government
+  gov: government
+  gps: government primary school
+  ghps: government higher primary school
+  glps: government lower primary school
+  ghs: government high school
+  gms: government model school
+  kps: karnataka public school
+  hps: higher primary school
+  lps: lower primary school
+  ups: upper primary school
+  mps: model primary school
+  hs: high school
+  phc: primary health centre
+  chc: community health centre
+  sc: sub centre
+  zp: zilla panchayat
+  gp: gram panchayat
+  awc: anganwadi centre
+  pu: pre university
+  dr: doctor
+  st: saint
+  sri: shri
+  shree: shri
+
+# Spelling variants mapped to one canonical form.
+spelling_variants:
+  vidhyalay: vidyalaya
+  vidyalay: vidyalaya
+  vidhyalaya: vidyalaya
+  prathmik: prathamik
+  rajakiya: rajkiya
+  rajkeeya: rajkiya
+  shaale: shale
+  shala: shale
+  anganawadi: anganwadi
+  aganwadi: anganwadi
+  aspatre: aspatri
+  centre: center
+
+# Removed when building key_tokens (kept in the full normalized name).
+generic_tokens:
+  - the
+  - of
+  - and
+  - school
+  - government
+  - primary
+  - higher
+  - lower
+  - upper
+  - high
+  - model
+  - public
+  - centre
+  - center
+  - health
+  - sub
+  - village
+  - shale
+  - vidyalaya
+  - kannada
+  - english
+  - medium

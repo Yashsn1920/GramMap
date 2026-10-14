@@ -1,0 +1,22 @@
+# Which source wins for each gold-asset field (PRD Section 7.5, "Attributes").
+# Sources are tried in order; the first one with a value wins and is recorded in attribute_provenance.
+# "*" means "any other source, in confidence order".
+
+geometry:
+  # Points: government source with exact coordinates, then OSM, then Overture,
+  # then matched, then approximate locations.
+  kind_order: [government, osm, overture, ml]
+  precision_order: [exact, matched, approximate]
+
+fields:
+  name: [kgis_schools, udise, nhfr, pmgsy_facilities, osm, overture, "*"]
+  udise_code: [kgis_schools, udise]
+  school_category: [kgis_schools, udise, osm]
+  enrolment: [udise]
+  teachers: [udise]
+  facility_type: [nhfr, pmgsy_facilities, osm, overture]
+  opening_hours: [osm, overture]
+  phone: [overture, osm]
+  website: [overture, osm]
+  population: [census_vd, pmgsy_habitations, worldpop]
+  surface: [osm, pmgsy_roads]

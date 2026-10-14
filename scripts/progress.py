@@ -41,55 +41,68 @@ def sh(*cmd):
         return ""
 
 
-IMAGES = [
-    "pgrouting/pgrouting:16-3.5-3.8",
-    "ghcr.io/maplibre/martin:1.16.1",
-    "redis:7-alpine",
-    "python:3.12-slim-bookworm",
-    "node:22-alpine",
+APPS = ["geo", "sources", "assets", "analytics", "accounts"]
+CONFIGS = [
+    "categories",
+    "sources",
+    "field_priority",
+    "abbreviations",
+    "norms",
+    "speeds",
+    "pipeline",
 ]
-SERVICES = ["db", "redis", "backend", "worker", "tiles", "frontend"]
 
-have_images = sh("docker", "images", "--format", "{{.Repository}}:{{.Tag}}").split()
 running_svcs = sh("docker", "compose", "ps", "--status", "running", "--services").split()
-ci = sh("gh", "run", "list", "--limit", "1", "--json", "conclusion", "-q", ".[0].conclusion")
+applied = sh(
+    "docker", "compose", "exec", "-T", "backend", "python", "manage.py", "showmigrations", "--plan"
+)
+tests = sh("docker", "compose", "exec", "-T", "-w", "/app", "backend", "pytest", "-q")
+pr = sh(
+    "gh",
+    "pr",
+    "view",
+    "--json",
+    "state,statusCheckRollup",
+    "-q",
+    '.state + " " + ([.statusCheckRollup[].conclusion] | join(","))',
+)
 
 tasks = [
     (
-        "Repository layout (Section 12.1)",
+        "Models for geo, sources, assets, analytics, accounts",
+        all(exists(f"backend/apps/{a}/models.py") for a in APPS),
+    ),
+    (
+        "Migrations created",
         all(
-            exists(p) for p in ["config", "pipelines", "backend/apps", "frontend/src", "notebooks"]
+            exists(
+                f"backend/apps/{a}/migrations/0001_"
+                + ("extensions.py" if a == "geo" else "initial.py")
+            )
+            for a in APPS
         ),
     ),
+    ("GiST + trigram indexes", text_has("backend/apps/geo/models.py", "gin_trgm_ops")),
+    ("config/*.yaml with Section 7 values", all(exists(f"config/{c}.yaml") for c in CONFIGS)),
     (
-        "docker-compose.yml with 6 services",
-        all(text_has("docker-compose.yml", f"  {s}:") for s in SERVICES),
+        "Config loader (pydantic) + tests",
+        exists("pipelines/config.py") and exists("pipelines/tests/test_config.py"),
     ),
+    ("Models registered in admin", all(exists(f"backend/apps/{a}/admin.py") for a in APPS)),
+    ("Migrations apply on empty database", "[ ]" not in applied and "analytics.0001" in applied),
+    ("All tests pass", " passed" in tests and "failed" not in tests),
     (
-        "Extensions postgis, pgrouting, pg_trgm",
-        exists("backend/apps/geo/migrations/0001_extensions.py"),
+        "Decisions log + PRD v1.2",
+        exists("docs/decisions.md") and exists("docs/GramMap_PRD_v1.2.docx"),
     ),
-    ("Django + GeoDjango + DRF + /api/health", exists("backend/grammap/health.py")),
-    (
-        "React + Vite + MapLibre with OSM basemap",
-        exists("frontend/src/map/BaseMap.tsx") and exists("frontend/package-lock.json"),
-    ),
-    ("GitHub Actions workflow", exists(".github/workflows/ci.yml")),
-    (".env.example and README", exists(".env.example") and text_has("README.md", "Quick start")),
-    ("Base images pulled", all(i in have_images for i in IMAGES)),
-    ("Stack running (docker compose up)", all(s in running_svcs for s in SERVICES)),
-    ("/api/health returns OK", '"ok"' in sh("curl", "-sf", "localhost:8000/api/health")),
-    ("Map served at localhost:5173", "GramMap" in sh("curl", "-sf", "localhost:5173")),
-    ("Pushed to GitHub", bool(sh("git", "ls-remote", "--heads", "origin"))),
-    ("CI green", ci.strip() == "success"),
+    ("PR open with CI green", "SUCCESS,SUCCESS" in pr or "MERGED" in pr),
 ]
 
 print("S0.1 Source audit and pilot district selection  [done]")
+print("S0.2 Repository, Docker and CI setup             [done]")
 print()
-print("S0.2 Repository, Docker and CI setup")
+print("S0.3 Database schema and configuration files")
 print("  Overall   " + bar(sum(d for _, d in tasks), len(tasks)))
 print()
 for name, done in tasks:
     print(f"  {'[x]' if done else '[ ]'} {name}")
-print()
-print("  Images    " + bar(sum(i in have_images for i in IMAGES), len(IMAGES)))

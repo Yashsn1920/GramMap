@@ -22,9 +22,16 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.gis",
+    "django.contrib.postgres",
     "rest_framework",
+    "apps.accounts",
     "apps.geo",
+    "apps.sources",
+    "apps.assets",
+    "apps.analytics",
 ]
+
+AUTH_USER_MODEL = "accounts.User"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

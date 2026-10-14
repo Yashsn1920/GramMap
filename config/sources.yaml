@@ -1,0 +1,217 @@
+# Data sources (PRD Section 5, status from docs/source_audit.md).
+# kind sets the default confidence weight class; weight / geocoded_weight are the
+# source_weight values from Section 7.5 (geocoded_weight applies to records placed by Section 7.4).
+# rate_limit is requests per second; enabled: false sources are skipped by every pipeline.
+
+sources:
+  osm:
+    label: OpenStreetMap (Overpass)
+    kind: osm
+    access: overpass
+    url: https://overpass-api.de/api/interpreter
+    mirrors: [https://overpass.kumi.systems/api/interpreter]
+    rate_limit: 0.5
+    weight: 0.70
+    licence: ODbL
+    attribution: © OpenStreetMap contributors
+    enabled: true
+  overture:
+    label: Overture Maps places
+    kind: overture
+    access: duckdb
+    url: s3://overturemaps-us-west-2/release/2026-09-23.1/
+    weight: 0.60
+    licence: CDLA-Permissive-2.0 / ODbL (by theme)
+    attribution: © Overture Maps Foundation
+    enabled: true
+  kgis_villages:
+    label: KGIS village boundaries
+    kind: government
+    access: arcgis_rest
+    url: https://kgis.ksrsac.in/kgismaps2/rest/services/Boundaries/Village_Dynamic/MapServer/0
+    page_size: 1000
+    rate_limit: 2
+    weight: 0.80
+    licence: Government portal, terms to confirm
+    attribution: KSRSAC / KGIS
+    enabled: true
+  kgis_schools:
+    label: KGIS schools (with UDISE codes)
+    kind: government
+    access: arcgis_rest
+    url: https://kgis.ksrsac.in/kgismaps/rest/services/Education/Education_New/MapServer/1
+    page_size: 1000
+    rate_limit: 2
+    weight: 0.80
+    geocoded_weight: 0.40
+    licence: Government portal, terms to confirm
+    attribution: KSRSAC / KGIS
+    enabled: true
+  kgis_gp_water:
+    label: KGIS Gram Panchayat water supply
+    kind: government
+    access: arcgis_rest
+    url: https://kgis.ksrsac.in/kgismaps2/rest/services/GP_Utility/GP_Utility/MapServer/2
+    page_size: 1000
+    rate_limit: 2
+    weight: 0.80
+    licence: Government portal, terms to confirm
+    attribution: KSRSAC / KGIS
+    enabled: true
+  kgis_gp_buildings:
+    label: KGIS Gram Panchayat buildings
+    kind: government
+    access: arcgis_rest
+    url: https://kgis.ksrsac.in/kgismaps2/rest/services/GP_Utility/GP_Utility/MapServer/0
+    page_size: 1000
+    rate_limit: 2
+    weight: 0.80
+    licence: Government portal, terms to confirm
+    attribution: KSRSAC / KGIS
+    enabled: true
+  kgis_immunisation:
+    label: KGIS polio immunisation sites
+    kind: government
+    access: arcgis_rest
+    url: https://kgis.ksrsac.in/kgismaps2/rest/services/Health/Immunisation_Centers/MapServer/0
+    page_size: 1000
+    rate_limit: 2
+    weight: 0.80
+    licence: Government portal, terms to confirm
+    attribution: KSRSAC / KGIS
+    enabled: true
+  kgis_govt_buildings:
+    label: KGIS government buildings
+    kind: government
+    access: arcgis_rest
+    url: https://kgis.ksrsac.in/kgismaps2/rest/services/GovtBuildings/GovtBuildings/MapServer/0
+    page_size: 1000
+    rate_limit: 2
+    weight: 0.80
+    licence: Government portal, terms to confirm
+    attribution: KSRSAC / KGIS
+    enabled: true
+  kgis_gramaone:
+    label: KGIS GramaOne / CSC centres
+    kind: government
+    access: arcgis_rest
+    url: https://kgis.ksrsac.in/kgismaps2/rest/services/GramaOne/GramaOne/MapServer/0
+    page_size: 1000
+    rate_limit: 2
+    weight: 0.80
+    licence: Government portal, terms to confirm
+    attribution: KSRSAC / KGIS
+    enabled: true
+  pmgsy_habitations:
+    label: PMGSY GeoSadak habitations (2022 snapshot)
+    kind: government
+    access: download
+    url: https://github.com/datameet/pmgsy-geosadak/raw/master/data/Habitation/Karnataka.zip
+    weight: 0.80
+    licence: GODL-India
+    attribution: PMGSY / NRIDA via DataMeet
+    enabled: true
+  pmgsy_facilities:
+    label: PMGSY GeoSadak rural facilities (2022 snapshot)
+    kind: government
+    access: download
+    url: https://github.com/datameet/pmgsy-geosadak/raw/master/data/Facilities/Karnataka.zip
+    weight: 0.80
+    licence: GODL-India
+    attribution: PMGSY / NRIDA via DataMeet
+    enabled: true
+  pmgsy_roads:
+    label: PMGSY rural roads (DRRP)
+    kind: government
+    access: download
+    url: https://github.com/datameet/pmgsy-geosadak/tree/master/data/Road_DRRP
+    weight: 0.80
+    licence: GODL-India
+    attribution: PMGSY / NRIDA via DataMeet
+    enabled: true
+  open_buildings:
+    label: Google Open Buildings (via Overture buildings)
+    kind: ml
+    access: duckdb
+    url: s3://overturemaps-us-west-2/release/2026-09-23.1/theme=buildings/
+    weight: 0.50
+    licence: CC BY 4.0 / ODbL
+    attribution: Google Open Buildings
+    enabled: true
+  ms_buildings:
+    label: Microsoft building footprints (via Overture buildings)
+    kind: ml
+    access: duckdb
+    url: s3://overturemaps-us-west-2/release/2026-09-23.1/theme=buildings/
+    weight: 0.50
+    licence: ODbL
+    attribution: Microsoft
+    enabled: true
+  ms_roads:
+    label: Microsoft road detections
+    kind: ml
+    access: download
+    url: https://github.com/microsoft/RoadDetections
+    weight: 0.50
+    licence: ODbL
+    attribution: Microsoft
+    enabled: true
+  worldpop:
+    label: WorldPop population grid
+    kind: ml
+    access: download
+    url: https://data.worldpop.org/
+    weight: 0.50
+    licence: CC BY 4.0
+    attribution: WorldPop
+    enabled: true
+  jrc:
+    label: JRC Global Surface Water
+    kind: ml
+    access: download
+    url: https://storage.googleapis.com/global-surface-water/
+    weight: 0.50
+    licence: Free with attribution
+    attribution: EC JRC / Google
+    enabled: true
+  udise:
+    label: UDISE+ school directory
+    kind: government
+    access: api
+    url: https://api.udiseplus.gov.in/public-api/v1.1/
+    rate_limit: 1
+    weight: 0.80
+    geocoded_weight: 0.40
+    licence: Site terms
+    attribution: Ministry of Education, UDISE+
+    enabled: false   # partial in S0.1; KGIS schools already carry UDISE codes
+  nhfr:
+    label: National Health Facility Registry
+    kind: government
+    access: api
+    url: https://facility.abdm.gov.in/
+    weight: 0.80
+    geocoded_weight: 0.40
+    licence: Site terms
+    attribution: NHA / ABDM
+    enabled: false   # blocked in S0.1 (needs login)
+  census_vd:
+    label: Census 2011 Village Directory
+    kind: government
+    access: download
+    url: https://www.devdatalab.org/shrug_download
+    weight: 0.80
+    geocoded_weight: 0.40
+    licence: GODL-India
+    attribution: Census of India 2011
+    enabled: true
+  mission_antyodaya:
+    label: Mission Antyodaya 2020
+    kind: government
+    access: download
+    url: https://missionantyodaya.nic.in/
+    weight: 0.80
+    geocoded_weight: 0.40
+    licence: Site terms
+    attribution: Ministry of Rural Development
+    enabled: false   # blocked in S0.1; revisit in S2.6

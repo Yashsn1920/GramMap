@@ -1,0 +1,51 @@
+# Numeric parameters of the processing steps (PRD Sections 7.1, 7.4 to 7.8, 7.13, 7.14).
+
+resolver:
+  analysis_buffer_km: 5          # 7.1 analysis area around the village boundary
+  no_boundary_search_km: 2       # 7.1 building search radius when no boundary exists
+  no_boundary_hull_buffer_m: 300
+  search_candidates: 50          # pg_trgm candidates re-ranked by rapidfuzz
+
+geocoding:
+  name_match_min: 80             # 7.4 step 2, rapidfuzz similarity 0..100
+
+conflation:
+  weights_named:   {distance: 0.45, name: 0.45, attribute: 0.10}
+  weights_unnamed: {distance: 0.85, attribute: 0.15}
+  attribute_scores: {agree: 1.0, unknown: 0.5, conflict: 0.0}
+  match_threshold: 0.75
+  uncertain_threshold: 0.50
+
+confidence:
+  recency:                       # age in years -> factor; first band whose max_years is not exceeded
+    - {max_years: 2, factor: 1.0}
+    - {max_years: 5, factor: 0.8}
+    - {max_years: null, factor: 0.6}
+  precision: {exact: 1.0, matched: 0.9, approximate: 0.6}
+  display: {high: 0.80, medium: 0.50}
+
+settlements:
+  min_building_confidence: 0.70
+  dbscan_eps_m: 50
+  dbscan_min_samples: 5
+
+road_gaps:
+  osm_buffer_m: 15
+  min_outside_share: 0.70
+  min_outside_length_m: 100
+
+water:
+  jrc_min_occurrence: 25
+
+completeness:
+  weights:
+    categories_found: 0.4
+    precise_share: 0.3
+    sources_per_asset: 0.2
+    recently_confirmed: 0.1
+  sources_per_asset_target: 2
+  recent_years: 2
+
+on_demand:
+  poll_interval_s: 2
+  target_seconds: 90
