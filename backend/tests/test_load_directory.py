@@ -54,3 +54,24 @@ def test_compare_lgd(offline, tmp_path):
     text = report.read_text()
     assert "Mismatch" in text
     assert "1234567 Not Ours" in text
+
+
+@pytest.mark.django_db
+def test_compare_lgd_apply_reconciles_pilot(offline, tmp_path):
+    call_command("load_directory", "--pilot-district", "526")
+    kept = list(Village.objects.values_list("lgd_code", "name")[:2])
+    dropped = Village.objects.exclude(lgd_code__in=[c for c, _ in kept]).first()
+    rows = "".join(f'"526","5602","{c}","{n}","{c}"\n' for c, n in kept)
+    csv = tmp_path / "lgd.csv"
+    csv.write_text(
+        '"District Code","Sub-District Code","Village Code","Village Name (In English)",'
+        '"Census 2011 Code"\n' + rows + '"526","5602","910080","Mopurahalli (D)","0"\n'
+    )
+    report = tmp_path / "cmp.md"
+    call_command("compare_lgd", str(csv), "--district", "526", "--apply", "--report", str(report))
+    pilot = set(Village.objects.filter(is_pilot=True).values_list("lgd_code", flat=True))
+    assert pilot == {kept[0][0], kept[1][0], "910080"}
+    new = Village.objects.get(lgd_code="910080")
+    assert new.block_id == "5602" and new.census_code == "" and new.boundary is None
+    assert Village.objects.get(lgd_code=dropped.lgd_code).is_pilot is False
+    assert "After reconciling" in report.read_text()

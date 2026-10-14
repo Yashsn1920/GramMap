@@ -1,7 +1,8 @@
 """Parse a Local Government Directory (lgdirectory.gov.in) village download.
 
 LGD download pages need a captcha, so the file is downloaded by hand once (PRD Section 5.2) and
-saved under data/raw/lgd/. Column names vary between LGD reports, so columns are found by keyword.
+saved under data/raw/lgd/ (the "Xls Report" option gives .xlsx). Column names vary between LGD
+reports, so columns are found by keyword.
 """
 
 import csv
@@ -44,10 +45,34 @@ def _match(header: list[str]) -> dict[str, int]:
     return found
 
 
+def _cell_text(value) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, float) and value.is_integer():
+        return str(int(value))  # Excel stores codes as numbers: 625373.0 -> "625373"
+    return str(value)
+
+
+def read_rows(path: Path | str) -> list[list[str]]:
+    """Rows of an LGD report as text: .xlsx (the LGD "Xls Report") or .csv."""
+    path = Path(path)
+    if path.suffix.lower() == ".xlsx":
+        import warnings
+
+        import openpyxl
+
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")  # LGD files have no default style
+            wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+        ws = wb.worksheets[0]
+        return [[_cell_text(v) for v in row] for row in ws.iter_rows(values_only=True)]
+    text = path.read_text(encoding="utf-8-sig", errors="replace")
+    return list(csv.reader(io.StringIO(text)))
+
+
 def parse_villages(path: Path | str) -> list[LgdVillage]:
-    """Read an LGD village CSV. The header may be preceded by title lines."""
-    text = Path(path).read_text(encoding="utf-8-sig", errors="replace")
-    rows = list(csv.reader(io.StringIO(text)))
+    """Read an LGD village report (.xlsx or .csv). Title lines above the header are skipped."""
+    rows = read_rows(path)
     header = next(
         (i for i, row in enumerate(rows) if {"village_code", "village_name"} <= set(_match(row))),
         None,

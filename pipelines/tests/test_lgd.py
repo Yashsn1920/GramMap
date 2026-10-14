@@ -32,3 +32,11 @@ def test_compare():
     assert result["not_in_lgd"] == 1
     assert result["count_matches"] is False
     assert result["extra_examples"] == ["999 Extra"]
+
+
+def test_parse_xlsx_report():
+    villages = parse_villages(SAMPLE.with_suffix(".xlsx"))
+    assert [v.village_code for v in villages] == ["625373", "625438"]
+    assert villages[0].subdistrict_code == "5603"
+    assert villages[0].census_2011 == "625373"
+    assert villages[1].census_2011 == ""
