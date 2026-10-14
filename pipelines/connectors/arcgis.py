@@ -46,9 +46,12 @@ def query_layer(
     backoff: float = 2.0,
     progress: Callable[[int, int], None] | None = None,
     session: requests.Session | None = None,
+    geojson: bool = False,
 ) -> list[dict]:
-    """Return every feature of a layer as {"attributes": ..., "geometry": ...} dicts.
+    """Return every feature of a layer.
 
+    Esri JSON features are {"attributes": ..., "geometry": ...}; with geojson=True they are
+    GeoJSON features {"properties": ..., "geometry": ...} in EPSG:4326.
     Pages are cached in cache_dir by a hash of the request, so a re-run reads from disk.
     """
     session = session or requests.Session()
@@ -72,6 +75,8 @@ def query_layer(
             "resultOffset": offset,
             "resultRecordCount": page_size,
         }
+        if geojson:
+            params.update(f="geojson", geometryPrecision=6)
         page = _cached(cache_dir, query_url, params)
         if page is None:
             page = _get(session, query_url, params, retries, backoff)
