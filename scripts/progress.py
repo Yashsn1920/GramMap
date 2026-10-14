@@ -41,22 +41,14 @@ def sh(*cmd):
         return ""
 
 
-APPS = ["geo", "sources", "assets", "analytics", "accounts"]
-CONFIGS = [
-    "categories",
-    "sources",
-    "field_priority",
-    "abbreviations",
-    "norms",
-    "speeds",
-    "pipeline",
-]
+report = os.path.join(ROOT, "docs/reports/S1_1_directory.md")
+lgd_report = os.path.join(ROOT, "docs/reports/S1_1_lgd_comparison.md")
+census_ok = False
+if os.path.exists(report):
+    import re
 
-running_svcs = sh("docker", "compose", "ps", "--status", "running", "--services").split()
-applied = sh(
-    "docker", "compose", "exec", "-T", "backend", "python", "manage.py", "showmigrations", "--plan"
-)
-tests = sh("docker", "compose", "exec", "-T", "-w", "/app", "backend", "pytest", "-q")
+    m = re.search(r"With a Census 2011 code: \*\*[\d,]+\*\* \(([\d.]+)%\)", open(report).read())
+    census_ok = bool(m) and float(m.group(1)) >= 95
 pr = sh(
     "gh",
     "pr",
@@ -68,40 +60,35 @@ pr = sh(
 )
 
 tasks = [
+    ("KGIS ArcGIS client (paging, retries, cache)", exists("pipelines/connectors/arcgis.py")),
+    ("Directory builder: state, district, taluk, village", exists("pipelines/connectors/kgis.py")),
+    ("Name normalization + transliteration variants", exists("pipelines/normalize/names.py")),
+    ("LGD download parser + comparison", exists("pipelines/connectors/lgd.py")),
+    ("Loader command run (Karnataka)", os.path.exists(report)),
+    ("Pilot villages with Census code >= 95%", census_ok),
     (
-        "Models for geo, sources, assets, analytics, accounts",
-        all(exists(f"backend/apps/{a}/models.py") for a in APPS),
-    ),
-    (
-        "Migrations created",
-        all(
-            exists(
-                f"backend/apps/{a}/migrations/0001_"
-                + ("extensions.py" if a == "geo" else "initial.py")
-            )
-            for a in APPS
+        "LGD file downloaded (manual, captcha)",
+        (
+            any(f.endswith((".csv", ".xlsx")) for f in os.listdir(os.path.join(ROOT, "data/raw/lgd")))
+            if os.path.isdir(os.path.join(ROOT, "data/raw/lgd"))
+            else False
         ),
     ),
-    ("GiST + trigram indexes", text_has("backend/apps/geo/models.py", "gin_trgm_ops")),
-    ("config/*.yaml with Section 7 values", all(exists(f"config/{c}.yaml") for c in CONFIGS)),
     (
-        "Config loader (pydantic) + tests",
-        exists("pipelines/config.py") and exists("pipelines/tests/test_config.py"),
-    ),
-    ("Models registered in admin", all(exists(f"backend/apps/{a}/admin.py") for a in APPS)),
-    ("Migrations apply on empty database", "[ ]" not in applied and "analytics.0001" in applied),
-    ("All tests pass", " passed" in tests and "failed" not in tests),
-    (
-        "Decisions log + PRD v1.2",
-        exists("docs/decisions.md") and exists("docs/GramMap_PRD_v1.2.docx"),
+        "Pilot village count matches LGD",
+        os.path.exists(lgd_report) and "**Match**" in open(lgd_report).read(),
     ),
     ("PR open with CI green", "SUCCESS,SUCCESS" in pr or "MERGED" in pr),
 ]
 
-print("S0.1 Source audit and pilot district selection  [done]")
-print("S0.2 Repository, Docker and CI setup             [done]")
+for done_step in [
+    "S0.1 Source audit and pilot district selection",
+    "S0.2 Repository, Docker and CI setup",
+    "S0.3 Database schema and configuration files",
+]:
+    print(f"{done_step:<48} [done]")
 print()
-print("S0.3 Database schema and configuration files")
+print("S1.1 LGD directory ingestion")
 print("  Overall   " + bar(sum(d for _, d in tasks), len(tasks)))
 print()
 for name, done in tasks:

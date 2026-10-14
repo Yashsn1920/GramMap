@@ -1,9 +1,15 @@
 """Django settings for GramMap. Environment-specific values come from env vars (.env.example)."""
 
 import os
+import sys
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+REPO_DIR = BASE_DIR.parent
+# the shared pure-Python `pipelines` package lives at the repository root
+if str(REPO_DIR) not in sys.path:
+    sys.path.insert(0, str(REPO_DIR))
+DATA_DIR = Path(os.environ.get("GRAMMAP_DATA_DIR", REPO_DIR / "data"))
 
 
 def env_bool(name, default=False):

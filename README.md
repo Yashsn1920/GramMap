@@ -78,6 +78,19 @@ data/        downloads and cache (git-ignored)
 notebooks/   exploration only
 ```
 
+## Loading data
+
+```bash
+# S1.1 administrative directory (KGIS), then reconcile the pilot with the official LGD list
+docker compose exec backend python manage.py load_directory --pilot-district 526 \
+    --report /app/docs/reports/S1_1_directory.md
+docker compose exec backend python manage.py compare_lgd /app/data/raw/lgd/villages_526.xlsx \
+    --district 526 --apply --report /app/docs/reports/S1_1_lgd_comparison.md
+```
+
+The LGD file is a one-time manual download (captcha) from lgdirectory.gov.in: Download Directory,
+villages of a specific district, Xls Report.
+
 ## Configuration
 
 All thresholds, weights, mappings and norms are in `config/*.yaml`. They are loaded and validated by
