@@ -1,0 +1,24 @@
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+extend-exclude = "migrations"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["**/migrations", "docs", "notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["grammap", "apps", "pipelines"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "grammap.settings"
+pythonpath = ["backend", "."]
+testpaths = ["backend/tests", "pipelines/tests"]
+
+[tool.ruff.lint.per-file-ignores]
+# one-off audit scripts: long query strings are clearer on one line
+"scripts/**" = ["E501", "E702"]
